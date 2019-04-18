@@ -1,4 +1,6 @@
 <?php
+
+namespace Niko\Guess;
 /**
  * Exception class for Guessexception.
  */
