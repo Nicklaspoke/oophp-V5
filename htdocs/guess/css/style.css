@@ -1,0 +1,17 @@
+.center {
+    text-align: center;
+}
+
+.guessForm {
+    width: 100%;
+    margin: 1em auto;
+    text-align: center;
+    float: left;
+}
+
+.formContainer {
+    width: 100%;
+    margin: 1em auto;
+    position: absolute;
+    background-color: #ccc;
+}
