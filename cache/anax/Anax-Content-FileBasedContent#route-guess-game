@@ -1,0 +1,11 @@
+O:8:"stdClass":7:{s:4:"file";s:19:"guess-game/index.md";s:7:"section";s:0:"";s:5:"level";i:0;s:8:"internal";b:0;s:7:"tocable";b:0;s:5:"views";a:1:{s:4:"main";a:2:{s:8:"template";s:23:"anax/v2/article/default";s:4:"data";a:2:{s:7:"content";s:160:"<h1>Guess My Number</h1>
+
+<p>Welcome to my game, guess the number.</p>
+
+<p><a href="http://localhost:8080/oophp/me/redovisa/htdocs/guess/init">New Game</a></p>
+";s:7:"excerpt";s:160:"<h1>Guess My Number</h1>
+
+<p>Welcome to my game, guess the number.</p>
+
+<p><a href="http://localhost:8080/oophp/me/redovisa/htdocs/guess/init">New Game</a></p>
+";}}}s:11:"frontmatter";a:1:{s:5:"title";s:15:"Guess My Number";}}

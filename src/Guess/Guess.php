@@ -85,7 +85,7 @@ class Guess
     public function makeGuess(int $number)
     {
         if ($number > 100 || $number < 1) {
-            throw new GuessException();
+            throw new \Exception();
         }
 
         $returnStr = "";
