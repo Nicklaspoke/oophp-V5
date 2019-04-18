@@ -11,6 +11,8 @@
  */
 $app->router->get("guess/init", function () use ($app) {
     // Init the session for the gamestart;
+    $guessGame = new Niko\Guess\Guess();
+    $_SESSION["guessGame"] = $guessGame;
     return $app->response->redirect("guess/play");
 });
 
@@ -21,22 +23,9 @@ $app->router->get("guess/init", function () use ($app) {
  */
 $app->router->get("guess/play", function () use ($app) {
     // echo "Some debugging information";
-    return ["Play the game!!!"];
-});
+    $title = "Play the game";
 
-
-
-/**
-* Showing message Hello World, rendered within the standard page layout.
- */
-$app->router->get("lek/hello-world-page", function () use ($app) {
-    $title = "Hello World as a page";
-    $data = [
-        "class" => "hello-world",
-        "content" => "Hello World in " . __FILE__,
-    ];
-
-    $app->page->add("anax/v2/article/default", $data);
+    $app->page->add("guess/play");
 
     return $app->page->render([
         "title" => $title,
