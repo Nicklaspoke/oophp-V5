@@ -12,7 +12,7 @@ class Guess
      * @var int $tries    Number of tries a guess has been made.
      */
     private $number;
-    private $tries = 0;
+    private $tries;
 
 
 
@@ -38,7 +38,7 @@ class Guess
      *
      * @return void
      */
-    private function random()
+    private function random() : void
     {
         $this->number = rand(1, 100);
     }
@@ -51,7 +51,7 @@ class Guess
      * @return int as number of tries made.
      */
 
-    public function getTries()
+    public function getTries() : int
     {
         return $this->tries;
     }
@@ -65,7 +65,7 @@ class Guess
      * @return int as the secret number.
      */
 
-    public function getSecretNumber()
+    public function getSecretNumber() : int
     {
         return $this->number;
     }
@@ -82,7 +82,7 @@ class Guess
      * @return string to show the status of the guess made.
      */
 
-    public function makeGuess(int $number)
+    public function makeGuess(int $number) : string
     {
         if ($number > 100 || $number < 1) {
             throw new \Exception();
