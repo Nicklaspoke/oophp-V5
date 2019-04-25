@@ -1,0 +1,69 @@
+O:8:"stdClass":7:{s:4:"file";s:12:"lek/index.md";s:7:"section";s:0:"";s:5:"level";i:0;s:8:"internal";b:0;s:7:"tocable";b:0;s:5:"views";a:3:{s:5:"flash";a:3:{s:6:"region";s:5:"flash";s:8:"template";s:21:"anax/v2/image/default";s:4:"data";a:1:{s:3:"src";s:68:"image/theme/tree.jpg?width=1100&height=150&crop-to-fit&area=0,0,30,0";}}s:10:"breadcrumb";a:3:{s:6:"region";s:10:"breadcrumb";s:8:"template";s:26:"anax/v2/breadcrumb/default";s:4:"data";a:2:{s:4:"meta";a:1:{s:4:"type";s:10:"breadcrumb";}s:10:"breadcrumb";a:1:{i:0;a:2:{s:3:"url";s:3:"lek";s:4:"text";s:12:"Test och lek";}}}}s:4:"main";a:2:{s:8:"template";s:23:"anax/v2/article/default";s:4:"data";a:2:{s:7:"content";s:1802:"<h1>Test och lek</h1>
+
+<p>Detta innehåll är skrivet i markdown och du hittar innehållet i filen <code>content/lek/index.md</code>.</p>
+
+<p>Tanken är att du kan ha en samlingssida där du kan länka till egna testsidor och testroutes, inom eller utom din me-sida.</p>
+
+<h2 id="ts"><a class="header-anchor" href="#ts">#</a>Testssida i <code>content/</code></h2>
+
+<p>Här är en sida <code>content/lek/markdown.md</code>, bara för att visa hur du länkar till den och når den via <code>lek/markdown</code>.</p>
+
+<ul>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/lek/markdown">Testsida <code>lek/markdown</code></a></li>
+</ul>
+
+<h2 id="te"><a class="header-anchor" href="#te">#</a>Testroute</h2>
+
+<p>Du kan skriva egna routes i filen <code>router/000_lek.php</code>, där finns några enklare routehanterare som du kan utgå ifrån när du bygger dina egna.</p>
+
+<ul>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/lek/hello-world">Hello world (utanför me-sidan)</a></li>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/lek/hello-world-json">Hello world som JSON</a></li>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/lek/hello-world-page">Hello world (inuti me-sidan)</a></li>
+</ul>
+
+<p>Du kan även skapa nya filer under <code>router/</code>, de läses in i ordning.</p>
+
+<h2 id="tf"><a class="header-anchor" href="#tf">#</a>Testfiler</h2>
+
+<p>Du kan också lägga till vanlig PHP-kod i filer under katalogen <code>htdocs/</code>, de kan du köra som vanliga PHP-program och du länkar direkt till dem.</p>
+
+<ul>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/demo/demo.php">Ett demo skript</a></li>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/demo/phpinfo.php">PHP info, detaljer om installationen</a></li>
+</ul>
+";s:7:"excerpt";s:1802:"<h1>Test och lek</h1>
+
+<p>Detta innehåll är skrivet i markdown och du hittar innehållet i filen <code>content/lek/index.md</code>.</p>
+
+<p>Tanken är att du kan ha en samlingssida där du kan länka till egna testsidor och testroutes, inom eller utom din me-sida.</p>
+
+<h2 id="ts"><a class="header-anchor" href="#ts">#</a>Testssida i <code>content/</code></h2>
+
+<p>Här är en sida <code>content/lek/markdown.md</code>, bara för att visa hur du länkar till den och når den via <code>lek/markdown</code>.</p>
+
+<ul>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/lek/markdown">Testsida <code>lek/markdown</code></a></li>
+</ul>
+
+<h2 id="te"><a class="header-anchor" href="#te">#</a>Testroute</h2>
+
+<p>Du kan skriva egna routes i filen <code>router/000_lek.php</code>, där finns några enklare routehanterare som du kan utgå ifrån när du bygger dina egna.</p>
+
+<ul>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/lek/hello-world">Hello world (utanför me-sidan)</a></li>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/lek/hello-world-json">Hello world som JSON</a></li>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/lek/hello-world-page">Hello world (inuti me-sidan)</a></li>
+</ul>
+
+<p>Du kan även skapa nya filer under <code>router/</code>, de läses in i ordning.</p>
+
+<h2 id="tf"><a class="header-anchor" href="#tf">#</a>Testfiler</h2>
+
+<p>Du kan också lägga till vanlig PHP-kod i filer under katalogen <code>htdocs/</code>, de kan du köra som vanliga PHP-program och du länkar direkt till dem.</p>
+
+<ul>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/demo/demo.php">Ett demo skript</a></li>
+<li><a href="http://localhost:8080/oophp/me/redovisa/htdocs/demo/phpinfo.php">PHP info, detaljer om installationen</a></li>
+</ul>
+";}}}s:11:"frontmatter";a:1:{s:5:"title";s:12:"Test och lek";}}

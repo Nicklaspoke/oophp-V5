@@ -1,0 +1,35 @@
+O:8:"stdClass":7:{s:4:"file";s:5:"om.md";s:7:"section";s:0:"";s:5:"level";i:0;s:8:"internal";b:0;s:7:"tocable";b:0;s:5:"views";a:4:{s:5:"flash";a:3:{s:6:"region";s:5:"flash";s:8:"template";s:21:"anax/v2/image/default";s:4:"data";a:1:{s:3:"src";s:62:"image/logo.png?width=100%&height=250&crop-to-fit&area=0,0,20,0";}}s:8:"kursrepo";a:4:{s:5:"title";s:17:"Kurs och kursrepo";s:4:"data";a:2:{s:7:"content";s:268:"<h4>Kurs och kursrepo</h4>
+
+<p>I denna kurs lär vi oss använda objekt orientering i php.</p>
+
+<p><a href="https://dbwebb.se/kurser/oophp-v5/">Kursens hemsida på dbwebb.se</a></p>
+
+<p><a href="https://github.com/dbwebb-se/oophp">Kursens kursrepo på GitHub</a>.</p>
+";s:4:"meta";a:2:{s:4:"type";s:6:"single";s:5:"route";s:17:"block/om-kursrepo";}}s:6:"region";s:13:"sidebar-right";s:8:"template";s:21:"anax/v2/block/default";}s:8:"redovisa";a:4:{s:5:"title";s:19:"Redovisa på GitHub";s:4:"data";a:2:{s:7:"content";s:130:"<h4>Redovisa på GitHub</h4>
+
+<p>Mitt <a href="https://github.com/Nicklaspoke/oophp-V5">repo för me/redovisa på GitHub</a>.</p>
+";s:4:"meta";a:2:{s:4:"type";s:6:"single";s:5:"route";s:17:"block/om-redovisa";}}s:6:"region";s:13:"sidebar-right";s:8:"template";s:21:"anax/v2/block/default";}s:4:"main";a:2:{s:8:"template";s:23:"anax/v2/article/default";s:4:"data";a:2:{s:7:"content";s:403:"<h1>Om</h1>
+
+<p>I denna kursen kommer vi programera objekt orienterat i php. Både i ramverket ANAX samt utanför ramverket.</p>
+
+<figure class="figure">
+<a href="http://localhost:8080/oophp/me/redovisa/htdocs/image/php_meme.jpg"><img src="http://localhost:8080/oophp/me/redovisa/htdocs/image/php_meme.jpg" alt="En fin meme om php"/></a>
+<figcaption>
+
+<p>En fin meme om php</p>
+
+</figcaption>
+</figure>
+";s:7:"excerpt";s:403:"<h1>Om</h1>
+
+<p>I denna kursen kommer vi programera objekt orienterat i php. Både i ramverket ANAX samt utanför ramverket.</p>
+
+<figure class="figure">
+<a href="http://localhost:8080/oophp/me/redovisa/htdocs/image/php_meme.jpg"><img src="http://localhost:8080/oophp/me/redovisa/htdocs/image/php_meme.jpg" alt="En fin meme om php"/></a>
+<figcaption>
+
+<p>En fin meme om php</p>
+
+</figcaption>
+</figure>
+";}}}s:11:"frontmatter";a:2:{s:5:"views";a:2:{s:8:"kursrepo";a:3:{s:6:"region";s:13:"sidebar-right";s:8:"template";s:21:"anax/v2/block/default";s:4:"data";a:1:{s:4:"meta";a:2:{s:4:"type";s:6:"single";s:5:"route";s:17:"block/om-kursrepo";}}}s:8:"redovisa";a:3:{s:6:"region";s:13:"sidebar-right";s:8:"template";s:21:"anax/v2/block/default";s:4:"data";a:1:{s:4:"meta";a:2:{s:4:"type";s:6:"single";s:5:"route";s:17:"block/om-redovisa";}}}}s:5:"title";s:2:"Om";}}
