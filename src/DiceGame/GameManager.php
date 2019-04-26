@@ -31,21 +31,24 @@ class GameManager
         if ($nPlayers === 1) {
             $this->players[] = new Player();
             $this->players[] = new Player(true);
+            $this->nPlayers = 2;
+
         } else {
             for ($i = 0; $i < $nPlayers; $i++) {
                 $this->players[] = new Player();
             }
+            $this->nPlayers = $nPlayers;
+
         }
 
         $this->diceHand = new DiceHand($nDice, $nDiceFaces);
-        $this->nPlayers = $nPlayers;
     }
 
     /**
      * Determines playerOrder, the player with the highest dice value begins
      * and then down from there in decending order
      */
-    public function determinPlayerOrder()
+    public function getStartingPlayer()
     {
         $highestValue = 0;
         $highestValueIndex = -1;
@@ -82,7 +85,61 @@ class GameManager
                 return $playerIndex;
             }
         }
-
         return $playerIndex;
     }
+
+    /**
+     * Accessers
+     */
+    /**
+     * Returns the number of players in the game
+     */
+    public function getPlayerCount() : int
+    {
+        return $this->nPlayers;
+    }
+
+    /**
+     * Returns the array with the current dice values from the last throw
+     */
+    public function getCurrentHandValues() : array
+    {
+        return $this->currentHandValues;
+    }
+
+    /**
+     * Returns the score for the player
+     */
+    public function getPlayerScore($playerIndex) : int
+    {
+        return $this->players[$playerIndex]->getTotalScore();
+    }
+
+    /**
+     * Return the current player
+     */
+    public function getCurrentPlayer() : int
+    {
+        return $this->currentPlayer;
+    }
+
+    public function getCurrentPlayerScore() : int
+    {
+        return $this->getPlayerScore($this->currentPlayer);
+    }
+
+    /**
+     * Modifiers
+     */
+
+    /**
+     * Adds score to the player
+     */
+    public function addPlayerScore($playerIndex, $score) : void
+    {
+        $this->players[$playerIndex]->updateTotalScore($score);
+    }
+
+
+
 }
