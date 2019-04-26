@@ -1,6 +1,6 @@
 <?php
 
-namespace Niko\Dice;
+namespace Niko\DiceGame;
 
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +23,7 @@ class PlayerTest extends TestCase
      */
     public function testCreateObject()
     {
-        $this->assertInstanceOf("\Niko\Dice\Player", $this->player);
+        $this->assertInstanceOf("\Niko\DiceGame\Player", $this->player);
 
         $exp = 0;
         $res = $this->player->getTotalScore();
@@ -40,6 +40,19 @@ class PlayerTest extends TestCase
 
         $exp = 42;
         $res = $this->player->getTotalScore();
+
+        $this->assertEquals($exp, $res);
+    }
+
+    /**
+     * Testing the isComputer function
+     */
+    public function testGetIsComputer()
+    {
+        $player2 = new Player(true);
+
+        $exp = true;
+        $res = $player2->getIsComputer();
 
         $this->assertEquals($exp, $res);
     }

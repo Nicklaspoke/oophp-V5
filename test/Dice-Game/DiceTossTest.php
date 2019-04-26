@@ -1,6 +1,6 @@
 <?php
 
-namespace Niko\Dice;
+namespace Niko\DiceGame;
 
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ class DiceTossTest extends TestCase
     public function testToss()
     {
         $dice = new Dice(20);
-        $this->assertInstanceOf("\Niko\Dice\Dice", $dice);
+        $this->assertInstanceOf("\Niko\DiceGame\Dice", $dice);
 
         $dice->toss();
 

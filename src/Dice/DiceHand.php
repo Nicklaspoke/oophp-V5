@@ -3,7 +3,7 @@
 /**
  * The dice hand class for the dice game
  */
-namespace Niko\Dice;
+namespace Niko\DiceGame;
 
 class DiceHand
 {
@@ -22,7 +22,7 @@ class DiceHand
      * @param int $numberOfDices        The number of dices to be used in the game
      * @param int $numberOfDiceFaces    The number of faces for the dice/s
      */
-    public function __constuct(int $numberOfDices = 1, int $numberOfDiceFaces = 6)
+    public function __construct(int $numberOfDices = 1, int $numberOfDiceFaces = 6)
     {
         for ($i = 0; $i < $numberOfDices; $i++) {
             $this->diceHand[] = new Dice($numberOfDiceFaces);
@@ -39,8 +39,8 @@ class DiceHand
     public function toss() : void
     {
         for ($i = 0; $i < count($this->diceHand); $i++) {
-            $this->diceHand[i]->toss();
-            $this->currentTossValues[i] = $this->diceHand[i]->getCurrentValue();
+            $this->diceHand[$i]->toss();
+            $this->currentTossValues[$i] = $this->diceHand[$i]->getCurrentValue();
         }
     }
 
@@ -49,8 +49,18 @@ class DiceHand
      *
      * @return array<int>
      */
-    public function getCurrentTossValues() : array
+    public function getCurrentTossValues()
     {
         return $this->currentTossValues;
+    }
+
+    /**
+     * Returns the number of dice/s in the hand
+     *
+     * @return int
+     */
+    public function getHandSize()
+    {
+        return $this->handSize;
     }
 }

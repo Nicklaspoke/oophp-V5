@@ -1,6 +1,6 @@
 <?php
 
-namespace Niko\Dice;
+namespace Niko\DiceGame;
 
 use PHPUnit\Framework\TestCase;
 
@@ -16,7 +16,7 @@ class DiceCreateObjectTest extends TestCase
     public function testCreateObjectNoArguments()
     {
         $dice = new Dice();
-        $this->assertInstanceOf("\Niko\Dice\Dice", $dice);
+        $this->assertInstanceOf("\Niko\DiceGame\Dice", $dice);
 
         $res = $dice->getFaces();
         $exp = 6;
@@ -27,12 +27,11 @@ class DiceCreateObjectTest extends TestCase
     public function testCreateObjectOneArgument()
     {
         $dice = new Dice(20);
-        $this->assertInstanceOf("\Niko\Dice\Dice", $dice);
+        $this->assertInstanceOf("\Niko\DiceGame\Dice", $dice);
 
         $res = $dice->getFaces();
         $exp = 20;
 
         $this->assertEquals($exp, $res);
     }
-
 }

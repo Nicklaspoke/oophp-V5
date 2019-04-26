@@ -3,7 +3,7 @@
 /**
  * The Dice Class for the dice game
  */
-namespace Niko\Dice;
+namespace Niko\DiceGame;
 
 class Dice
 {

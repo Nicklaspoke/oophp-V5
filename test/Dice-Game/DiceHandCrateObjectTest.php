@@ -1,6 +1,6 @@
 <?php
 
-namespace Niko\Dice;
+namespace Niko\DiceGame;
 
 use PHPUnit\Framework\TestCase;
 
@@ -16,8 +16,10 @@ class DiceHandCrateObjectTest extends TestCase
     {
         $hand = new DiceHand();
 
+        $this->assertInstanceOf("\Niko\DiceGame\DiceHand", $hand);
+
         $exp = 1;
-        $res = count($hand->getCurrentTossValues());
+        $res = $hand->getHandSize();
 
         $this->assertEquals($exp, $res);
     }
@@ -28,6 +30,13 @@ class DiceHandCrateObjectTest extends TestCase
     public function testCreateObjectFirstArgument()
     {
         $hand = new DiceHand(2);
+
+        $this->assertInstanceOf("\Niko\DiceGame\DiceHand", $hand);
+
+        $exp = 2;
+        $res = $hand->getHandSize();
+
+        $this->assertEquals($exp, $res);
     }
 
     /**
@@ -36,5 +45,12 @@ class DiceHandCrateObjectTest extends TestCase
     public function testCreateObjectBothArguments()
     {
         $hand = new DiceHand(3, 20);
+
+        $this->assertInstanceOf("\Niko\DiceGame\DiceHand", $hand);
+
+        $exp = 3;
+        $res = $hand->getHandSize();
+
+        $this->assertEquals($exp, $res);
     }
 }
