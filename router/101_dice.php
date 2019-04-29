@@ -35,6 +35,6 @@ $app->router->get("dice/play", function () use ($app) {
     $data = [
         "currentPlayer" => $game->getCurrentPlayer(),
         "currentPlayerScore" => $game->getCurrentPlayerScore(),
-        "currentRoundScore"
+        "currentRoundScore" => $game->getCurrentRoundScore()
     ];
 });
