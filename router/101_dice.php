@@ -18,7 +18,13 @@ $app->router->post("dice/init", function () use ($app) {
         intval($app->request->getPost("diceFaces"))
     );
 
+    $diceGame->getStartingPlayer();
+
     $app->session->set("diceGame", $diceGame);
+
+    echo "<pre>";
+    var_dump($app->session->get("diceGame"));
+    echo "</pre>";
 
     return $app->response->redirect("dice/play");
 });

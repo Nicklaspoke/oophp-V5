@@ -11,6 +11,7 @@ class GameManager
      * @var int             $startingPlayer     The index of the player gets the first round
      * @var int             $currentPlayer      The current players index in the players array
      * @var array<int>      $currentHandValues  The values from the last throw of dice/s
+     * @var int             $currentRoundScore  The total score the player has collected during his/her turn
      */
     private $players;
     private $diceHand;
@@ -91,6 +92,42 @@ class GameManager
     }
 
     /**
+     * Toss round for the player. Checks if a 1 has been thrown.
+     * If not the score will be added to the $currentRoundScore.
+     * If a 1 has been thrown reset $currentRoundScore and return -1
+     *
+     * @return void : int
+     */
+    public function playerRound()
+    {
+        $this->diceHand->toss();
+        $this->currentHandValues = $this->diceHand->getCurrentTossValues();
+
+        foreach($this->currentHandValues as $diceValue) {
+            if ($diceValue = 1) {
+                $this->currentRoundScore = 0;
+                $this->endPlayerRound();
+            }
+            $this->currentRoundScore += $diceValue;
+        }
+    }
+
+    public function endPlayerRound()
+    {
+        if ($this->currentRoundScore > 0) {
+            $this->addPlayerScore($this->currentPlayer, $this->currentRoundScore);
+            $this->currentRoundScore = 0;
+        }
+
+        //Setting up for next players turn
+        if ($this->currentPlayer += 1 < $this->nPlayers) {
+            $this->currentPlayer++;
+        } else {
+            $this->currentPlayer = 0;
+        }
+    }
+
+    /**
      * Accsessors
      */
     /**
@@ -159,8 +196,11 @@ class GameManager
 
     /**
      * Adds score to the player
+     *
+     * @param int   $playerIndex    The index in the player array for the player to add score to
+     * @param int   $score          The score to add to the player
      */
-    public function addPlayerScore($playerIndex, $score) : void
+    public function addPlayerScore(int $playerIndex, int $score) : void
     {
         $this->players[$playerIndex]->updateTotalScore($score);
     }
