@@ -18,6 +18,7 @@ class GameManager
     private $startingPlayer;
     private $currentPlayer;
     private $currentHandValues;
+    private $currentRoundScore;
 
     /**
      * Contructor for the whole game
@@ -42,6 +43,7 @@ class GameManager
         }
 
         $this->diceHand = new DiceHand($nDice, $nDiceFaces);
+        $this->currentRoundScore = 0;
     }
 
     /**
@@ -66,7 +68,7 @@ class GameManager
             }
         }
 
-        $this->startingPlayer = $highestValueIndex;
+        $this->currentPlayer = $highestValueIndex;
     }
 
     /**
@@ -89,10 +91,12 @@ class GameManager
     }
 
     /**
-     * Accessers
+     * Accsessors
      */
     /**
      * Returns the number of players in the game
+     *
+     * @return int
      */
     public function getPlayerCount() : int
     {
@@ -101,6 +105,8 @@ class GameManager
 
     /**
      * Returns the array with the current dice values from the last throw
+     *
+     * @return array<int>
      */
     public function getCurrentHandValues() : array
     {
@@ -109,6 +115,8 @@ class GameManager
 
     /**
      * Returns the score for the player
+     *
+     * @return int
      */
     public function getPlayerScore($playerIndex) : int
     {
@@ -116,16 +124,33 @@ class GameManager
     }
 
     /**
-     * Return the current player
+     * Return the index for current player
+     *
+     * @return int
      */
     public function getCurrentPlayer() : int
     {
         return $this->currentPlayer;
     }
 
+    /**
+     * Returns the total collected score forthe current player
+     *
+     * @return int
+     */
     public function getCurrentPlayerScore() : int
     {
         return $this->getPlayerScore($this->currentPlayer);
+    }
+
+    /**
+     * Returns the total score for the current round
+     *
+     * @return int
+     */
+    public function getCurrentRoundScore() : int
+    {
+        return $this->currentRoundScore;
     }
 
     /**
@@ -139,7 +164,4 @@ class GameManager
     {
         $this->players[$playerIndex]->updateTotalScore($score);
     }
-
-
-
 }

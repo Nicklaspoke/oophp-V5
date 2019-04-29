@@ -25,7 +25,7 @@ class GameManagerTest extends TestCase
 
         $this->assertInstanceOf("\Niko\DiceGame\GameManager", $gm);
 
-        $exp = 1;
+        $exp = 2;
         $res = $gm->getPlayerCount();
 
         $this->assertEquals($exp, $res);
