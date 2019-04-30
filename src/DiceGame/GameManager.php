@@ -8,7 +8,6 @@ class GameManager
      * @var array<player>   $players            Array containing all the players
      * @var Dice            $diceHand           The diceHand that holds all the dice/s
      * @var int             $nPlayers           The number of players in the game
-     * @var int             $startingPlayer     The index of the player gets the first round
      * @var int             $currentPlayer      The current players index in the players array
      * @var array<int>      $currentHandValues  The values from the last throw of dice/s
      * @var int             $currentRoundScore  The total score the player has collected during his/her turn
@@ -16,7 +15,6 @@ class GameManager
     private $players;
     private $diceHand;
     private $nPlayers;
-    private $startingPlayer;
     private $currentPlayer;
     private $currentHandValues;
     private $currentRoundScore;
@@ -98,7 +96,7 @@ class GameManager
      *
      * @return void : int
      */
-    public function playerRound()
+    public function playerRound() : int
     {
         $this->diceHand->toss();
         $this->currentHandValues = $this->diceHand->getCurrentTossValues();
@@ -107,6 +105,7 @@ class GameManager
             if ($diceValue = 1) {
                 $this->currentRoundScore = 0;
                 $this->endPlayerRound();
+                return -1;
             }
             $this->currentRoundScore += $diceValue;
         }
@@ -119,12 +118,14 @@ class GameManager
             $this->currentRoundScore = 0;
         }
 
+        echo "Before if: " . $this->currentPlayer;
         //Setting up for next players turn
-        if ($this->currentPlayer += 1 < $this->nPlayers) {
+        if ($this->currentPlayer + 1 < $this->nPlayers) {
             $this->currentPlayer++;
         } else {
             $this->currentPlayer = 0;
         }
+        echo "After if: " . $this->currentPlayer;
     }
 
     /**
@@ -151,11 +152,29 @@ class GameManager
     }
 
     /**
+     * Takes the array of toss values and formats it into a string
+     *
+     * @return string
+     */
+    public function getCurrentTossVAluesAsString() : string
+    {
+        $returnStr = "";
+
+        foreach($this->diceHand->getCurrentTossValues() as $diceValue) {
+            $returnStr .= $diceValue .= ", ";
+        }
+
+        rtrim($returnStr, ", ");
+
+        return $returnStr;
+    }
+
+    /**
      * Returns the score for the player
      *
      * @return int
      */
-    public function getPlayerScore($playerIndex) : int
+    public function getPlayerScore(int $playerIndex) : int
     {
         return $this->players[$playerIndex]->getTotalScore();
     }
@@ -171,7 +190,7 @@ class GameManager
     }
 
     /**
-     * Returns the total collected score forthe current player
+     * Returns the total collected score for the current player
      *
      * @return int
      */
@@ -188,6 +207,23 @@ class GameManager
     public function getCurrentRoundScore() : int
     {
         return $this->currentRoundScore;
+    }
+
+    /**
+     * Returns the gamestatus, aka. player scores in the form of a preforamted string
+     *
+     * @return string
+     */
+    public function getGameStatusAsString() : string
+    {
+        $returnStr = "";
+
+        for ($i = 0; $i < $this->nPlayers; $i++) {
+            $returnStr .= "<p>Player " . ($i+1) . " has a score of: ";
+            $returnStr .= $this->getPlayerScore($i) . "</p>";
+        }
+
+        return $returnStr;
     }
 
     /**

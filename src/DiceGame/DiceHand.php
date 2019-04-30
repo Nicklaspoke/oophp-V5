@@ -38,7 +38,7 @@ class DiceHand
      */
     public function toss() : void
     {
-        for ($i = 0; $i < count($this->diceHand); $i++) {
+        for ($i = 0; $i < $this->handSize; $i++) {
             $this->diceHand[$i]->toss();
             $this->currentTossValues[$i] = $this->diceHand[$i]->getCurrentValue();
         }
