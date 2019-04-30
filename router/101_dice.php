@@ -76,8 +76,8 @@ $app->router->post("dice/play", function() use ($app) {
 
     if($chooice === "toss again") {
         $status = $game->playerRound();
+
         if($status === -1) {
-            $game->endPlayerRound();
             // $app->session->set("diceGame", $game);
             $app->page->add("dice-game/lostRound");
 
@@ -85,6 +85,9 @@ $app->router->post("dice/play", function() use ($app) {
                 "title" => $title
             ]);
         }
+
+        return $app->response->redirect("dice/play");
+
     } else if ($chooice === "end turn") {
         $game->endPlayerRound();
 

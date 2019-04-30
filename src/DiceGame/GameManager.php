@@ -101,14 +101,20 @@ class GameManager
         $this->diceHand->toss();
         $this->currentHandValues = $this->diceHand->getCurrentTossValues();
 
+        echo "<pre>";
+        var_dump($this->currentHandValues);
+        echo "</pre>";
         foreach($this->currentHandValues as $diceValue) {
-            if ($diceValue = 1) {
+            echo $diceValue;
+            if ($diceValue == 1) {
                 $this->currentRoundScore = 0;
                 $this->endPlayerRound();
                 return -1;
             }
             $this->currentRoundScore += $diceValue;
         }
+
+        return $this->currentRoundScore;
     }
 
     public function endPlayerRound()
@@ -118,14 +124,12 @@ class GameManager
             $this->currentRoundScore = 0;
         }
 
-        echo "Before if: " . $this->currentPlayer;
         //Setting up for next players turn
         if ($this->currentPlayer + 1 < $this->nPlayers) {
             $this->currentPlayer++;
         } else {
             $this->currentPlayer = 0;
         }
-        echo "After if: " . $this->currentPlayer;
     }
 
     /**
