@@ -119,7 +119,7 @@ $app->router->post("dice/play", function () use ($app) {
     }
 });
 
-$app->router->get("dice/lostRound", function () use ($app) {
+$app->router->get("dice/gameDone", function () use ($app) {
     $title = "Dice Game";
 
     $app->page->add("dice-game/lostRound");
