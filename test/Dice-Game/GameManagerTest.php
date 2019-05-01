@@ -67,4 +67,63 @@ class GameManagerTest extends TestCase
 
         $this->assertEquals($exp, $res);
     }
+
+    /**
+     * Test playerround when the player rolls a 1.
+     * Need to manipulate the dice for this one, becouse of the random factor.
+     */
+    public function testPlayerRoundLoss()
+    {
+        $game = new GameManager(1, 1, 1);
+
+        $exp = -1;
+        $res = $game->playerRound();
+
+        $this->assertEquals($exp, $res);
+    }
+
+    /**
+     * Test playerround when the player rolls a anythong but a 1.
+     * Need to manipulate the dice for this one, becouse of the random factor.
+     */
+    public function testPlayerRoundNormal()
+    {
+        $game = new GameManager(1, 1, 1000);
+
+        $exp = -1;
+        $res = $game->playerRound();
+
+        $this->assertNotEquals($exp, $res);
+    }
+
+    /**
+     * Test that the currentRound gets reseted and that it rolls over to the next player
+     * Need to manipulate the dice for this one, becouse of the random factor.
+     */
+    public function testEndPlayerTurn()
+    {
+        $game = new GameManager(1, 1, 1000);
+
+        $game->playerRound();
+        $game->endPlayerRound();
+
+        //Check that the correct player gets choosen
+        $exp = 1;
+        $res = $game->getCurrentPlayer();
+
+        $this->assertEquals($exp, $res);
+
+        //Check that currentRoundScore gets reset
+        $exp = 0;
+        $res = $game->getCurrentRoundScore();
+
+        $this->assertEquals($exp, $res);
+
+        //Test when player 1 gets set
+        $game->endPlayerRound();
+        $exp = 0;
+        $res = $game->getCurrentPlayer();
+
+        $this->assertEquals($exp, $res);
+    }
 }
