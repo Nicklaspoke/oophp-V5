@@ -147,23 +147,22 @@ class GameManager
         $result = 0;
         //Call the AI decision maker until false is returned or a 1 is rolled
         while ($decision) {
+            echo "<pre>";
+            var_dump($this->currentPlayer);
+            echo "</pre>";
             $decision = $this->players[$this->currentPlayer]->makePlayerDecision(
                 $this->currentRoundScore,
-                $this->getPlayerScore($this->getOpposingPlayer()),
-                $this->getCurrentHandValues()
+                $this->getPlayerScore($this->getOpposingPlayer())
             );
 
             //If returned true, the AI wants to toss again
             if ($decision) {
                 $result = $this->playerRound();
+                $result == -1 ? $decision = false : $decision = true;
+            } else {
+                $this->endPlayerRound();
             }
         }
-
-        if ($result == -1) {
-            $decision = false;
-        }
-
-        $this->endPlayerRound();
     }
 
     /**

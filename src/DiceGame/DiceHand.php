@@ -69,6 +69,8 @@ class DiceHand
      */
     public function resetTossValues()
     {
-        $this->currentTossValues = [];
+        for ($i = 0; $i < $this->handSize; $i++) {
+            $this->currentTossValues[$i] = 0;
+        }
     }
 }

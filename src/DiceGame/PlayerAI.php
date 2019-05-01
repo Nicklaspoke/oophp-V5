@@ -18,11 +18,10 @@ class PlayerAI extends Player
      *
      * @param int           $currenRoundScore       The total number of points gathered this round
      * @param int           $playerScore            The score of the opposing player
-     * @param array<int>    $currentHandValues      The hand values from the last toss with the hand
      *
      * @return bool     True if continue playing, False if it wants to end the round
      */
-    public function makePlayerDecision(int $currentRoundScore, int $opponentScore, array $currentHandValues) : bool
+    public function makePlayerDecision(int $currentRoundScore, int $opponentScore) : bool
     {
         $decision = false;
 
@@ -47,7 +46,7 @@ class PlayerAI extends Player
      */
     public function decideGameState()
     {
-        if ($this->totalScore > 75) {
+        if ($this->getTotalScore() > 75) {
             return 2;
         }
 
@@ -79,12 +78,14 @@ class PlayerAI extends Player
      */
     public function lateGameDecision(int $opponentScore, int $currentRoundScore)
     {
+        $potensialTotalscore = $this->getTotalScore() + $currentRoundScore;
+
         //Check if oponent can win the next round
-        if ($opponentScore >= 90) {
+        if ($opponentScore >= 94) {
             return true;
         }
 
-        if ($currentRoundScore + $this->totalScore >= 100) {
+        if ($potensialTotalscore >= 100) {
             return false;
         }
 
