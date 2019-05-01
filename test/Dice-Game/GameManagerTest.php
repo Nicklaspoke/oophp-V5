@@ -14,19 +14,19 @@ class GameManagerTest extends TestCase
      */
     public function setUp()
     {
-        $this->gm = new GameManager(4);
+        $this->game = new GameManager(4);
     }
     /**
      * constuct object with no arguments to verify that default values works
      */
     public function testCreateObject()
     {
-        $gm = new GameManager();
+        $game = new GameManager();
 
-        $this->assertInstanceOf("\Niko\DiceGame\GameManager", $gm);
+        $this->assertInstanceOf("\Niko\DiceGame\GameManager", $game);
 
         $exp = 2;
-        $res = $gm->getPlayerCount();
+        $res = $game->getPlayerCount();
 
         $this->assertEquals($exp, $res);
     }
@@ -37,16 +37,34 @@ class GameManagerTest extends TestCase
     public function testPlayerOrder()
     {
         $exp = -1;
-        $res = $this->gm->getStartingPlayer();
+        $res = $this->game->getStartingPlayer();
 
         $this->assertNotEquals($exp, $res);
     }
 
     /**
-     * Test the set score function and if game is done
+     * Test the set score function and if game is done when there is a player
+     * with a score of 100
      */
-    public function checkIfGameDone()
+    public function checkIfGameDonePlayerWon()
     {
+        $this->game->addPlayerScore(0, 100);
 
+        $exp = 0;
+        $res = $this->game->checkIfGameDone();
+
+        $this->assertNotEquals($exp, $res);
+    }
+
+    /**
+     * Test the checkifgameisdone when no players has a score of 100
+     *
+     */
+    public function checkIfGameDoneNoWinner()
+    {
+        $exp = -1;
+        $res = $this->game->checkIfGameDone();
+
+        $this->assertNotEquals($exp, $res);
     }
 }

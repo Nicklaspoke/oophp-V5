@@ -32,6 +32,10 @@ $app->router->post("dice/init", function () use ($app) {
 $app->router->get("dice/play", function () use ($app) {
     $game = $app->session->get("diceGame");
 
+    if ($game->isPlayerComputer()) {
+
+    }
+
     $title = "Dice Game";
 
     $data = [
@@ -80,7 +84,7 @@ $app->router->get("dice/nextPlayer", function () use ($app) {
     ]);
 });
 
-$app->router->post("dice/play", function() use ($app) {
+$app->router->post("dice/play", function () use ($app) {
     //Get the button chooice
     $chooice = $app->request->getPost("button");
 
@@ -90,11 +94,11 @@ $app->router->post("dice/play", function() use ($app) {
     $game = $app->session->get("diceGame");
 
     //Check for the players chooice
-    if($chooice === "toss again") {
+    if ($chooice === "toss again") {
         $status = $game->playerRound();
 
         //Detect if the player tossed a 1
-        if($status === -1) {
+        if ($status === -1) {
             // $app->session->set("diceGame", $game);
             $app->page->add("dice-game/lostRound");
 

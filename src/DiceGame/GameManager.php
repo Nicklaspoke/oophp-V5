@@ -30,15 +30,13 @@ class GameManager
     {
         if ($nPlayers === 1) {
             $this->players[] = new Player();
-            $this->players[] = new Player(true);
+            $this->players[] = new PlayerAI;
             $this->nPlayers = 2;
-
         } else {
             for ($i = 0; $i < $nPlayers; $i++) {
                 $this->players[] = new Player();
             }
             $this->nPlayers = $nPlayers;
-
         }
 
         $this->diceHand = new DiceHand($nDice, $nDiceFaces);
@@ -67,6 +65,9 @@ class GameManager
             }
         }
 
+        //Reset the toss values
+        $this->diceHand->resetTossValues();
+
         $this->currentPlayer = $highestValueIndex;
     }
 
@@ -94,14 +95,14 @@ class GameManager
      * If not the score will be added to the $currentRoundScore.
      * If a 1 has been thrown reset $currentRoundScore and return -1
      *
-     * @return void : int
+     * @return int
      */
     public function playerRound() : int
     {
         $this->diceHand->toss();
         $this->currentHandValues = $this->diceHand->getCurrentTossValues();
 
-        foreach($this->currentHandValues as $diceValue) {
+        foreach ($this->currentHandValues as $diceValue) {
             echo $diceValue;
             if ($diceValue == 1) {
                 $this->currentRoundScore = 0;
@@ -114,7 +115,13 @@ class GameManager
         return $this->currentRoundScore;
     }
 
-    public function endPlayerRound()
+    /**
+     * Ends the playerRound by setting the $currentRoundScore to 0
+     * and moves $currentPlayer to the next one in line
+     *
+     * @return void
+     */
+    public function endPlayerRound() : void
     {
         if ($this->currentRoundScore > 0) {
             $this->addPlayerScore($this->currentPlayer, $this->currentRoundScore);
@@ -127,6 +134,36 @@ class GameManager
         } else {
             $this->currentPlayer = 0;
         }
+    }
+
+    /**
+     * Handles the communication with the player AI
+     *
+     * @return void
+     */
+    public function computerRound() : void
+    {
+        $decision = true;
+        $result = 0;
+        //Call the AI decision maker until false is returned or a 1 is rolled
+        while ($decision) {
+            $decision = $this->players[$this->currentPlayer]->makePlayerDecision(
+                $this->currentRoundScore,
+                $this->getPlayerScore($this->getOpposingPlayer()),
+                $this->getCurrentHandValues()
+            );
+
+            //If returned true, the player wants to throw again
+            if ($decision) {
+                $result = $this->playerRound();
+            }
+        }
+
+        if ($result == -1) {
+            $decision = false;
+        }
+
+        $this->endPlayerRound();
     }
 
     /**
@@ -161,7 +198,7 @@ class GameManager
     {
         $returnStr = "";
 
-        foreach($this->diceHand->getCurrentTossValues() as $diceValue) {
+        foreach ($this->diceHand->getCurrentTossValues() as $diceValue) {
             $returnStr .= $diceValue .= ", ";
         }
 
@@ -235,6 +272,17 @@ class GameManager
     public function isPlayerComputer() : bool
     {
         return $this->players[$this->currentPlayer]->isComputer();
+    }
+
+    /**
+     * Get the opposing player for the playerAI. This funciton should only be used in a two player
+     * game where one player is the AI
+     *
+     * @return int
+     */
+    public function getOpposingPlayer() : int
+    {
+        return $this->currentPlayer == 0 ? 0 : 1;
     }
 
     /**

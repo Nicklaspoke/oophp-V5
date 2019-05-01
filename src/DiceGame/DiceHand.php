@@ -63,4 +63,12 @@ class DiceHand
     {
         return $this->handSize;
     }
+
+    /**
+     * Resets $currentTossValues values to an empty array
+     */
+    public function resetTossValues()
+    {
+        $this->currentTossValues = [];
+    }
 }

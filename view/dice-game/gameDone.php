@@ -14,4 +14,4 @@ namespace Anax\View;
     you have won the game with a score of <?= $playerScore ?>
 </p>
 
-<a href="../dice-game/">Click here to play again</a>
+<p>Thanks for playing</p>

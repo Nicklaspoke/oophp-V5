@@ -47,12 +47,12 @@ class PlayerTest extends TestCase
     /**
      * Testing the isComputer function
      */
-    public function testGetIsComputer()
+    public function testIsComputer()
     {
         $player2 = new Player(true);
 
         $exp = true;
-        $res = $player2->getIsComputer();
+        $res = $player2->IsComputer();
 
         $this->assertEquals($exp, $res);
     }

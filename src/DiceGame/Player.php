@@ -22,7 +22,7 @@ class Player
     public function __construct($isComputer = false)
     {
         $this->totalScore = 0;
-        $this->isComputer = true;
+        $this->isComputer = $isComputer;
     }
 
     public function updateTotalScore(int $scoreToAdd) : void
