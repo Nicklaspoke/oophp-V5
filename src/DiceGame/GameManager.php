@@ -101,9 +101,6 @@ class GameManager
         $this->diceHand->toss();
         $this->currentHandValues = $this->diceHand->getCurrentTossValues();
 
-        echo "<pre>";
-        var_dump($this->currentHandValues);
-        echo "</pre>";
         foreach($this->currentHandValues as $diceValue) {
             echo $diceValue;
             if ($diceValue == 1) {
@@ -160,7 +157,7 @@ class GameManager
      *
      * @return string
      */
-    public function getCurrentTossVAluesAsString() : string
+    public function getCurrentTossValuesAsString() : string
     {
         $returnStr = "";
 
@@ -228,6 +225,16 @@ class GameManager
         }
 
         return $returnStr;
+    }
+
+    /**
+     * Returns if the current player is a computer or a human player
+     *
+     * @return bool
+     */
+    public function isPlayerComputer() : bool
+    {
+        return $this->players[$this->currentPlayer]->isComputer();
     }
 
     /**

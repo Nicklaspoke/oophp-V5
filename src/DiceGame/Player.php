@@ -14,6 +14,11 @@ class Player
     private $totalScore;
     private $isComputer;
 
+    /**
+     * Constructor for the player class.
+     *
+     * @param bool  $isComputer Determines if the player should be controlled by the computer or a human, default is false, aka human player
+     */
     public function __construct($isComputer = false)
     {
         $this->totalScore = 0;
@@ -30,7 +35,7 @@ class Player
         return $this->totalScore;
     }
 
-    public function getIsComputer() : bool
+    public function isComputer() : bool
     {
         return $this->isComputer;
     }
