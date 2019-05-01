@@ -41,6 +41,8 @@ class GameManager
 
         $this->diceHand = new DiceHand($nDice, $nDiceFaces);
         $this->currentRoundScore = 0;
+        $this->currentHandValues = [];
+        $this->currentPlayer = 0;
     }
 
     /**
@@ -103,7 +105,6 @@ class GameManager
         $this->currentHandValues = $this->diceHand->getCurrentTossValues();
 
         foreach ($this->currentHandValues as $diceValue) {
-            echo $diceValue;
             if ($diceValue == 1) {
                 $this->currentRoundScore = 0;
                 $this->endPlayerRound();
@@ -147,9 +148,6 @@ class GameManager
         $result = 0;
         //Call the AI decision maker until false is returned or a 1 is rolled
         while ($decision) {
-            echo "<pre>";
-            var_dump($this->currentPlayer);
-            echo "</pre>";
             $decision = $this->players[$this->currentPlayer]->makePlayerDecision(
                 $this->currentRoundScore,
                 $this->getPlayerScore($this->getOpposingPlayer())

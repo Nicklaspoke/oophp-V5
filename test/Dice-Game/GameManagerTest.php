@@ -14,7 +14,7 @@ class GameManagerTest extends TestCase
      */
     public function setUp()
     {
-        $this->game = new GameManager(4);
+        $this->game = new GameManager(10);
     }
     /**
      * constuct object with no arguments to verify that default values works
@@ -46,25 +46,25 @@ class GameManagerTest extends TestCase
      * Test the set score function and if game is done when there is a player
      * with a score of 100
      */
-    public function checkIfGameDonePlayerWon()
+    public function testcheckIfGameDonePlayerWon()
     {
         $this->game->addPlayerScore(0, 100);
 
         $exp = 0;
         $res = $this->game->checkIfGameDone();
 
-        $this->assertNotEquals($exp, $res);
+        $this->assertEquals($exp, $res);
     }
 
     /**
      * Test the checkifgameisdone when no players has a score of 100
      *
      */
-    public function checkIfGameDoneNoWinner()
+    public function testcheckIfGameDoneNoWinner()
     {
         $exp = -1;
         $res = $this->game->checkIfGameDone();
 
-        $this->assertNotEquals($exp, $res);
+        $this->assertEquals($exp, $res);
     }
 }
