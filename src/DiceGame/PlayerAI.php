@@ -28,6 +28,15 @@ class PlayerAI extends Player
 
         $state = $this->decideGameState();
 
+        switch ($state) {
+            case 1:
+                $decision = $this->earlyGameDecision($opponentScore, $currentRoundScore);
+                break;
+            case 2:
+                $decision = $this->lateGameDecision($opponentScore, $currentRoundScore);
+                break;
+        }
+
         return $decision;
     }
 
@@ -47,17 +56,38 @@ class PlayerAI extends Player
 
     /**
      * Makes decision for the early portion of the dice game
+     *
+     * @param int       $opponentScore    The score of the opponent
+     *
+     * @return bool     decision if it should throw dices again, or end its turn
      */
-    public function earlyGameDecision()
+    public function earlyGameDecision(int $opponentScore, int $currentRoundScore)
     {
+        if ($currentRoundScore < 20) {
+            return true;
+        }
 
+        return false;
     }
 
     /**
      * Makes decision for the late portion of the dice game
+     *
+     * @param int       $opponentScore    The score of the opponent
+     *
+     * @return bool     decision if it should throw dices again, or end its turn
      */
-    public function lateGameDecision()
+    public function lateGameDecision(int $opponentScore, int $currentRoundScore)
     {
+        //Check if oponent can win the next round
+        if ($opponentScore >= 90) {
+            return true;
+        }
 
+        if ($currentRoundScore + $this->totalScore >= 100) {
+            return false;
+        }
+
+        return true;
     }
 }

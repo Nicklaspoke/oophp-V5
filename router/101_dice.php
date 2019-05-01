@@ -29,11 +29,16 @@ $app->router->post("dice/init", function () use ($app) {
     return $app->response->redirect("dice/nextPlayer");
 });
 
+/**
+ * The play portion of the game, where the player makes their decisions
+ */
 $app->router->get("dice/play", function () use ($app) {
     $game = $app->session->get("diceGame");
 
     if ($game->isPlayerComputer()) {
+        $this->game->computerRound();
 
+        return $app->response->redirect("dice/nextPlayer");
     }
 
     $title = "Dice Game";
@@ -52,6 +57,9 @@ $app->router->get("dice/play", function () use ($app) {
     ]);
 });
 
+/**
+ * Landing page between player rounds
+ */
 $app->router->get("dice/nextPlayer", function () use ($app) {
     $title = "Dice Game";
 
@@ -84,6 +92,9 @@ $app->router->get("dice/nextPlayer", function () use ($app) {
     ]);
 });
 
+/**
+ * Post route for the play round
+ */
 $app->router->post("dice/play", function () use ($app) {
     //Get the button chooice
     $chooice = $app->request->getPost("button");

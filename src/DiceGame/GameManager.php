@@ -153,7 +153,7 @@ class GameManager
                 $this->getCurrentHandValues()
             );
 
-            //If returned true, the player wants to throw again
+            //If returned true, the AI wants to toss again
             if ($decision) {
                 $result = $this->playerRound();
             }
