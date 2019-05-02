@@ -5,6 +5,23 @@ namespace Niko\DiceGame;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * This AI for the dice game 100, aka pig.
+ * Utilizes a simple AI that makes decision based on stages in the game.
+ * The first state, called early game is when the AI has bellow 75 points.
+ *
+ * During the early game the AI will try to get 20 points each round. This number is taken
+ * with inspiration from a study where it's suggested that the opptimal strategy during the begining
+ * is to always go for 20 points.
+ *
+ * During lategame (>75 points) the AI will take the opposing players points into consideration
+ * if the opposing player can win the game his/her's next turn (>=94), The AI will always try to win.
+ * And ignore the 20 point restriction. If the AI has gathered enough points during its turn (current total + round total)
+ * for a victory. then the AI will automaticly stop his turn and ignore the minimum of 20 points per round.
+ *
+ * Link to the paper about opptimal strategy: https://pdfs.semanticscholar.org/50b2/d628c3a03cfe2594a052a99da627f875ee48.pdf
+ */
+
+/**
  * Test cases for class PlayerAI.
  */
 class PlayerAITest extends TestCase

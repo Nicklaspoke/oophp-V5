@@ -6,7 +6,7 @@ class GameManager
 {
     /**
      * @var array<player>   $players            Array containing all the players
-     * @var Dice            $diceHand           The diceHand that holds all the dice/s
+     * @var DiceHand        $diceHand           The diceHand that holds all the dice/s
      * @var int             $nPlayers           The number of players in the game
      * @var int             $currentPlayer      The current players index in the players array
      * @var array<int>      $currentHandValues  The values from the last throw of dice/s
