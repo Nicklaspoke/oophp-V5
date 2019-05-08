@@ -2,14 +2,15 @@
 
 namespace Niko\DiceGame;
 
-class GameManager
+class GameManager implements HistogramInterface
 {
+    use HistogramTrait;
     /**
      * @var array<player>   $players            Array containing all the players
      * @var DiceHand        $diceHand           The diceHand that holds all the dice/s
      * @var int             $nPlayers           The number of players in the game
      * @var int             $currentPlayer      The current players index in the players array
-     * @var array<int>      $currentHandValues  The values from the last throw of dice/s
+     * @var array           $currentHandValues  The values from the last throw of dice/s
      * @var int             $currentRoundScore  The total score the player has collected during his/her turn
      */
     private $players;
@@ -103,7 +104,7 @@ class GameManager
     {
         $this->diceHand->toss();
         $this->currentHandValues = $this->diceHand->getCurrentTossValues();
-
+        $this->serie = array_merge($this->serie, $this->currentHandValues);
         foreach ($this->currentHandValues as $diceValue) {
             if ($diceValue == 1) {
                 $this->currentRoundScore = 0;

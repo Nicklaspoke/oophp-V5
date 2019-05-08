@@ -9,6 +9,11 @@ namespace Anax\View;
 
 <h1>Dice Game</h1>
 
+<p>Histogram over the dice throws this game</p>
+<pre>
+<?= $histogram ?>
+</pre>
+
 <p>The current status of the game is:</p>
 <p><?= $gameStatus ?></p>
 

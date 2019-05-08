@@ -82,7 +82,8 @@ $app->router->get("dice/nextPlayer", function () use ($app) {
     }
     $data = [
         "gameStatus" => $game->getGameStatusAsString(),
-        "nextPlayer" => $game->getCurrentPlayer()
+        "nextPlayer" => $game->getCurrentPlayer(),
+        "histogram" => $game->getHistogramAsString()
     ];
 
     $app->page->add("dice-game/nextPlayer", $data);
