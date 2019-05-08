@@ -196,5 +196,4 @@ class DiceGameController implements AppInjectableInterface
             "title" => $this->title
         ]);
     }
-
 }

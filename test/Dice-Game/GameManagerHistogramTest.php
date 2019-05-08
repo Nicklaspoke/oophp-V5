@@ -105,9 +105,8 @@ class GameManagerHistogramTest extends TestCase
     public function testGetHistogramAsStringWithArgs()
     {
         $exp = "";
-        $res = $this->game->getHistogramAsString(1,6);
+        $res = $this->game->getHistogramAsString(1, 6);
 
         $this->assertNotEquals($exp, $res);
     }
-
 }
