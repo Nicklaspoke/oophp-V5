@@ -14,6 +14,8 @@ namespace Anax\View;
 <?= $histogram ?>
 </pre>
 
+<p>Avrage value that has been rolled is: <?= $avrageThrow ?></p>
+
 <p>The current status of the game is:</p>
 <p><?= $gameStatus ?></p>
 

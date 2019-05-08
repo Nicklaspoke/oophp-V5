@@ -14,8 +14,6 @@ interface HistogramInterface
      */
     public function getHistogramSerie();
 
-
-
     /**
      * Get min value for the histogram.
      *
@@ -29,4 +27,6 @@ interface HistogramInterface
      * @return string
      */
     public function getHistogramAsString();
+
+    public function getAvrageThrow();
 }

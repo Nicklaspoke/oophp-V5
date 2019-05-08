@@ -28,6 +28,24 @@ trait HistogramTrait
     }
 
     /**
+     * Return the avrage value of the dice throws
+     *
+     * @return number
+     */
+    public function getAvrageThrow()
+    {
+        if (count($this->serie) === 0) {
+            return 0;
+        }
+
+        $total = array_sum($this->serie);
+
+        $avrage = round($total / count($this->serie), 2);
+
+        return $avrage;
+    }
+
+    /**
      * Print out the histogram, default is to print out only the numbers
      * in the serie, but when $min and $max is set then print also empty
      * values in the serie, within the range $min, $max.
