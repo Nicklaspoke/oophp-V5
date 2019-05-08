@@ -22,11 +22,6 @@ trait HistogramTrait
         return $this->serie;
     }
 
-    public function getHistogramMin()
-    {
-        return 1;
-    }
-
     /**
      * Return the avrage value of the dice throws
      *

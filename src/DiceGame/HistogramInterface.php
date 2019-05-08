@@ -15,13 +15,6 @@ interface HistogramInterface
     public function getHistogramSerie();
 
     /**
-     * Get min value for the histogram.
-     *
-     * @return int with the min value.
-     */
-    public function getHistogramMin();
-
-    /**
      * Get the full histogram as a string
      *
      * @return string
