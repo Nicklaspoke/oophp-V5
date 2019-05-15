@@ -93,7 +93,7 @@ return [
 
         [
             "text" => "Movies",
-            "url" => "movie",
+            "url" => "movies",
             "title" => "Movies",
         ],
     ],
