@@ -134,8 +134,7 @@ class MoviesController implements AppInjectableInterface
         $movieId = $this->app->request->getPost("movieId");
         $action = $this->app->request->getPost("action");
 
-        if($action === "Add") {
-
+        if ($action === "Add") {
             $sql = "INSERT INTO movie (title, year, image) VALUES (?, ?, ?);";
             $this->app->db->execute($sql, ["A title", 2000, "img/noimage.png"]);
             $movieId = $this->app->db->lastInsertId();
@@ -175,5 +174,4 @@ class MoviesController implements AppInjectableInterface
 
         return $this->app->response->redirect("movie");
     }
-
 }

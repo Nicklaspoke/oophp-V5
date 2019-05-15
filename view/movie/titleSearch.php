@@ -12,7 +12,7 @@
     </fieldset>
 </form>
 
-<?php if(isset($resultset)): ?>
+<?php if (isset($resultset)) : ?>
     <table>
         <tr class="first">
             <th>Rad</th>
