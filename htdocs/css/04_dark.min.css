@@ -45,3 +45,9 @@ th,
 td {
     padding: 0.5em;
 }
+
+a.center-link {
+    text-align: center;
+    text-decoration: none;
+    padding-bottom: 1em;
+}

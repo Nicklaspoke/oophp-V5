@@ -7,6 +7,10 @@ if (!$resultset) {
 }
 
 ?>
+
+<a class="center-link" href="movies/titleSearch">Search by titel | </a>
+<a class="center-link" href="movies/yearSearch">Search by year | </a>
+<a class="center-link" href="movies/crud">CRUD</a>
 <table>
     <tr class="first">
         <th>Rad</th>

@@ -56,15 +56,124 @@ class MoviesController implements AppInjectableInterface
         ]);
     }
 
-    public function searchTitelAction()
+    public function titleSearchAction()
     {
+        $data = [];
+        if ($this->app->request->getGet("titleSearch")) {
+            $titleSearch = $this->app->request->getGet("titleSearch");
+            $this->app->db->connect();
+            $sql = "SELECT * FROM movie WHERE title LIKE ?;";
+            $res = $this->app->db->executeFetchAll($sql, [$titleSearch]);
+            $data = [
+                "resultset" => $res,
+                "titleSearch" => $titleSearch,
+            ];
+        }
 
+        if (!isset($data["titleSearch"])) {
+            $data["titleSearch"] = "";
+        }
+
+        $this->app->page->add("movie/titleSearch", $data);
+
+        return $this->app->page->render([
+            "title" => $this->title
+        ]);
     }
 
-    public function searchYearAction()
+    public function yearSearchAction()
     {
+        $minYear = $this->app->request->getGet("minYear");
+        $maxYear = $this->app->request->getGet("maxYear");
+        $data = [
+            "minYear" => $minYear,
+            "maxYear" => $maxYear,
+        ];
 
+        $this->app->db->connect();
+
+        if ($minYear && $maxYear) {
+            $sql = "SELECT * FROM movie WHERE year >= ? AND year <= ?;";
+            $res = $this->app->db->executeFetchAll($sql, [$minYear, $maxYear]);
+        } elseif ($minYear) {
+            $sql = "SELECT * FROM movie WHERE year >= ?;";
+            $res = $this->app->db->executeFetchAll($sql, [$minYear]);
+        } elseif ($maxYear) {
+            $sql = "SELECT * FROM movie WHERE year <= ?;";
+            $res = $this->app->db->executeFetchAll($sql, [$maxYear]);
+        }
+
+        $data["resultset"] = isset($res) ? $res : null;
+
+        $this->app->page->add("movie/yearSearch", $data);
+
+        return $this->app->page->render([
+            "title" => $this->title
+        ]);
     }
 
+    public function crudActionGet()
+    {
+        $this->app->db->connect();
+        $sql = "SELECT * FROM movie;";
+        $res = $this->app->db->executeFetchAll($sql);
+
+        $this->app->page->add("movie/crud", [
+            "resultset" => $res,
+        ]);
+
+        return $this->app->page->render([
+            "title" => $this->title,
+        ]);
+    }
+
+    public function crudActionPost()
+    {
+        $this->app->db->connect();
+
+        $movieId = $this->app->request->getPost("movieId");
+        $action = $this->app->request->getPost("action");
+
+        if($action === "Add") {
+
+            $sql = "INSERT INTO movie (title, year, image) VALUES (?, ?, ?);";
+            $this->app->db->execute($sql, ["A title", 2000, "img/noimage.png"]);
+            $movieId = $this->app->db->lastInsertId();
+
+            $sql = "SELECT * FROM movie WHERE id = ?";
+            $res = $this->app->db->executeFetch($sql, [$movieId]);
+
+            $this->app->page->add("movie/edit-movie", [
+                "resultset" => $res,
+            ]);
+
+            return $this->app->page->render([
+                "title" => $this->title,
+            ]);
+        } elseif ($action === "Edit") {
+            $sql = "SELECT * FROM movie WHERE id = ?;";
+            $res = $this->app->db->executeFetch($sql, [$movieId]);
+
+            $this->app->page->add("movie/edit-movie", [
+                "resultset" => $res,
+            ]);
+
+            return $this->app->page->render([
+                "title" => $this->title,
+            ]);
+        } elseif ($action === "Delete") {
+            $sql = "DELETE FROM movie WHERE id = ?;";
+            $this->app->db->execute($sql, [$movieId]);
+        } elseif ($action === "Save") {
+            $movieId = $this->app->request->getPost("movieId");
+            $movieTitle = $this->app->request->getPost("movieTitle");
+            $movieYear = $this->app->request->getPost("movieYear");
+            $movieImage = $this->app->request->getPost("movieImage");
+            $sql = "UPDATE movie SET title = ?, year = ?, image = ? WHERE id = ?;";
+            $this->app->db->execute($sql, [$movieTitle, $movieYear, $movieImage, $movieId]);
+        }
+
+        return $this->app->response->redirect("movie");
+    }
 
 }
