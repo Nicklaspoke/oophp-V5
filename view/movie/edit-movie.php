@@ -1,9 +1,3 @@
-<?php
-echo "<pre>";
-var_dump($resultset);
-echo "</pre>";
-?>
-
 <form method="POST">
     <fieldset>
         <legend>Edit</legend>
