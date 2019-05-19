@@ -2,9 +2,11 @@
 
 namespace Niko\TextFilter;
 
+use \Michelf\Markdown;
+
 class MyTextFilter
 {
-    use \Michelf\Markdown;
+
     /**
      * @var array $filters Supported filters with method names of
      *                     their respective handler.
@@ -25,7 +27,8 @@ class MyTextFilter
      *
      * @return string with the formatted text.
      */
-    public function parse($text, $filter) {
+    public function parse($text, $filter)
+    {
         foreach ($filter as $option) {
             $func = $this->filters[$option];
             $text = $this->$func($text);
@@ -91,7 +94,8 @@ class MyTextFilter
      */
     public function markdown($text)
     {
-        return Markdown::defaultTransform($text);
+        $markDownParse = new \Michelf\Markdown();
+        return $markDownParse->defaultTransform($text);
     }
 
     /**

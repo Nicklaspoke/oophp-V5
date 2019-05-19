@@ -96,5 +96,10 @@ return [
             "url" => "movies",
             "title" => "Movies",
         ],
+        [
+            "text" => "ContentDB",
+            "url" => "contentDB/overView",
+            "title" => "contentDB",
+        ],
     ],
 ];

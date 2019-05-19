@@ -46,8 +46,13 @@ td {
     padding: 0.5em;
 }
 
-a.center-link {
+a.link {
     text-align: center;
     text-decoration: none;
     padding-bottom: 1em;
+}
+
+.secondary-nav {
+    max-width: 90%;
+    margin: 1rem auto;
 }
