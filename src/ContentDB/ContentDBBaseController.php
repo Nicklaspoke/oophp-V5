@@ -96,6 +96,8 @@ class ContentDBBaseController implements AppInjectableInterface
 
         if ($this->app->session->has("flashMessage")) {
             $data["flashMessage"] = $this->app->session->getonce("flashMessage");
+        } else {
+            $data["flashMessage"] = null;
         }
         $this->app->page->add("contentDB/header");
         $this->app->page->add("contentDB/edit", $data);
@@ -133,10 +135,10 @@ class ContentDBBaseController implements AppInjectableInterface
                 $params["contentPath"] = null;
             }
 
-            $sql = "SELECT slug FROM content WHERE slug= ?";
+            $sql = "SELECT * FROM content WHERE slug= ?";
             $res = $this->app->db->executeFetchAll($sql, [$params["contentSlug"]]);
 
-            if (count($res) > 0) {
+            if (count($res) > 0 && $res[0]->title != $params["contentTitle"]) {
                 $contentId = $this->app->request->getPost("contentId");
                 $flashMessage = "You can't have two pages/posts with the same slug";
                 $this->app->session->set("flashMessage", $flashMessage);
@@ -149,7 +151,6 @@ class ContentDBBaseController implements AppInjectableInterface
             return $this->app->response->redirect("contentDB/overView");
         } elseif ($action === "Delete") {
             $contentId = $this->app->request->getPost("contentId");
-            echo $contentId;
             return $this->app->response->redirect("contentDB/delete?id=$contentId");
         }
     }
@@ -260,7 +261,9 @@ class ContentDBBaseController implements AppInjectableInterface
                 $this->app->page->add("contentDB/404");
             } else {
                 $filters = explode(",", $res->filter);
-                $res->data = $this->textFilter->parse($res->data, $filters);
+                if ($res->data) {
+                    $res->data = $this->textFilter->parse($res->data, $filters);
+                }
                 $this->app->page->add("contentDB/page", [
                     "resultset" => $res,
                 ]);
