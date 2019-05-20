@@ -92,10 +92,13 @@ class ContentDBBaseController implements AppInjectableInterface
         $sql = "SELECT * FROM content WHERE id = ?";
         $res = $this->app->db->executeFetch($sql, [$postId]);
 
+        $data["resultset"] = $res;
+
+        if ($this->app->session->has("flashMessage")) {
+            $data["flashMessage"] = $this->app->session->getonce("flashMessage");
+        }
         $this->app->page->add("contentDB/header");
-        $this->app->page->add("contentDB/edit", [
-            "resultset" => $res,
-        ]);
+        $this->app->page->add("contentDB/edit", $data);
 
         return $this->app->page->render([
             "title" => $this->title,
@@ -107,6 +110,7 @@ class ContentDBBaseController implements AppInjectableInterface
      */
     public function editActionPost()
     {
+        $this->app->db->connect();
         $action = $this->app->request->getPost("action");
 
         if ($action === "Save") {
@@ -129,7 +133,16 @@ class ContentDBBaseController implements AppInjectableInterface
                 $params["contentPath"] = null;
             }
 
-            $this->app->db->connect();
+            $sql = "SELECT slug FROM content WHERE slug= ?";
+            $res = $this->app->db->executeFetchAll($sql, [$params["contentSlug"]]);
+
+            if (count($res) > 0) {
+                $contentId = $this->app->request->getPost("contentId");
+                $flashMessage = "You can't have two pages/posts with the same slug";
+                $this->app->session->set("flashMessage", $flashMessage);
+                return $this->app->response->redirect("contentDB/edit?id=$contentId");
+            }
+
             $sql = "UPDATE content SET title=?, path=?, slug=?, data=?, type=?, filter=?, published=? WHERE id = ?;";
             $this->app->db->execute($sql, array_values($params));
 

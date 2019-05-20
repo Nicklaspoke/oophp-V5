@@ -6,6 +6,10 @@ if (!$resultset) {
     return;
 }
 
+if ($flashMessage) {
+    echo "<div class='flashmessage'>$flashMessage </div>";
+}
+
 ?>
 
 <form method="POST">
