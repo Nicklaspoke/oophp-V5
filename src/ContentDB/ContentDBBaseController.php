@@ -5,6 +5,14 @@ namespace Niko\ContentDB;
 use Anax\Commons\AppInjectableInterface;
 use Anax\Commons\AppInjectableTrait;
 
+// use Anax\Route\Exception\ForbiddenException;
+// use Anax\Route\Exception\NotFoundException;
+// use Anax\Route\Exception\InternalErrorException;
+
+/**
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
+
 class ContentDBBaseController implements AppInjectableInterface
 {
     use AppInjectableTrait;
@@ -54,6 +62,9 @@ class ContentDBBaseController implements AppInjectableInterface
         ]);
     }
 
+    /**
+     * Route for displaying the admin wiht all pages and posts to edit or delete
+     */
     public function adminActionGet()
     {
         $this->app->db->connect();
@@ -70,7 +81,9 @@ class ContentDBBaseController implements AppInjectableInterface
     }
 
 
-
+    /**
+     * Route for displaying the user with the edit form for a post/page
+     */
     public function editActionGet()
     {
         $postId = $this->app->request->getGet("id");
@@ -89,6 +102,9 @@ class ContentDBBaseController implements AppInjectableInterface
         ]);
     }
 
+    /**
+     * Route for commiting the edit of a page or post to the database
+     */
     public function editActionPost()
     {
         $action = $this->app->request->getPost("action");
@@ -104,6 +120,15 @@ class ContentDBBaseController implements AppInjectableInterface
                 "contentPublish" => $this->app->request->getPost("contentPublish"),
                 "contentId" => $this->app->request->getPost("contentId"),
             ];
+
+            if (!$params["contentSlug"]) {
+                $params["contentSlug"] = slugify($params["contentTitle"]);
+            }
+
+            if (!$params["contentPath"]) {
+                $params["contentPath"] = null;
+            }
+
             $this->app->db->connect();
             $sql = "UPDATE content SET title=?, path=?, slug=?, data=?, type=?, filter=?, published=? WHERE id = ?;";
             $this->app->db->execute($sql, array_values($params));
@@ -116,6 +141,9 @@ class ContentDBBaseController implements AppInjectableInterface
         }
     }
 
+    /**
+     * Route for the user to confirm the deltion of th post/page
+     */
     public function deleteActionGet()
     {
         $contentId =  $this->app->request->getGet("id");
@@ -134,6 +162,9 @@ class ContentDBBaseController implements AppInjectableInterface
         ]);
     }
 
+    /**
+     * Route for deleting a post or page
+     */
     public function deleteActionPost()
     {
         $contentId = $this->app->request->getPost("contentId");
@@ -145,6 +176,9 @@ class ContentDBBaseController implements AppInjectableInterface
         return $this->app->response->redirect("contentDB/overView");
     }
 
+    /**
+     * Route for cxreating a new blogpost or page
+     */
     public function createAction()
     {
         if ($this->app->request->getPost("doCreate")) {
@@ -165,29 +199,118 @@ class ContentDBBaseController implements AppInjectableInterface
         ]);
     }
 
-    public function pagesActionGet()
+    /**
+     * Route to display all pages and a single page
+     */
+    public function pagesActionGet($id = null)
     {
         $this->app->db->connect();
-        $sql = <<<EOD
-SELECT
-    *,
-    CASE
-        WHEN (deleted <= NOW()) THEN "isDeleted"
-        WHEN (published <= NOW()) THEN "isPublished"
-        ELSE "notPublished"
-    END AS status
-FROM content
-WHERE type=?
-;
-EOD;
 
-        $res = $this->app->db->executeFetchAll($sql, ["page"]);
+        if (!$id) {
+            $sql =
+            "SELECT
+                *,
+                CASE
+                    WHEN (deleted <= NOW()) THEN 'isDeleted'
+                    WHEN (published <= NOW()) THEN 'isPublished'
+                    ELSE 'notPublished'
+                END AS status
+            FROM content
+            WHERE type=?
+            ;";
 
-        $this->app->page->add("contentDB/header");
-        $this->app->page->add("contentDB/pages", [
-            "resultset" => $res,
+            $res = $this->app->db->executeFetchAll($sql, ["page"]);
+
+            $this->app->page->add("contentDB/header");
+            $this->app->page->add("contentDB/pages", [
+                "resultset" => $res,
+            ]);
+        } else {
+            $sql =
+            "SELECT
+                *,
+                DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%dT%TZ') AS modified_iso8601,
+                DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%d') AS modified
+            FROM content
+            WHERE
+                path = ?
+                AND type = ?
+                AND (deleted IS NULL OR deleted > NOW())
+                AND published <= NOW()
+            ;";
+
+            $res = $this->app->db->executeFetch($sql, [$id, "page"]);
+
+            $this->app->page->add("contentDB/secondaryHeader");
+
+            if (!$res) {
+                $this->app->page->add("contentDB/404");
+            } else {
+                $filters = explode(",", $res->filter);
+                $res->data = $this->textFilter->parse($res->data, $filters);
+                $this->app->page->add("contentDB/page", [
+                    "resultset" => $res,
+                ]);
+            }
+        }
+        return $this->app->page->render([
+            "title" => $this->title,
         ]);
+    }
 
+    /**
+     * Route for the blog, renders all blog posts and a single blog post when it's clicked
+     */
+    public function blogActionGet($id = null)
+    {
+
+        $this->app->db->connect();
+
+        if (!$id) {
+            $sql =
+                "SELECT
+                *,
+                    DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%dT%TZ') AS published_iso8601,
+                    DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%d') AS published
+                FROM content
+                    WHERE type=?
+                ORDER BY published DESC
+                ;";
+                    $res = $this->app->db->executeFetchAll($sql, ["post"]);
+
+                    $this->app->page->add("contentDB/header");
+                    $this->app->page->add("contentDB/blog", [
+                        "resultset" => $res,
+                    ]);
+        } else {
+            $sql =
+                "SELECT
+                *,
+                    DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%dT%TZ') AS published_iso8601,
+                    DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%d') AS published
+                FROM content
+                    WHERE
+                        slug = ?
+                        AND type = ?
+                        AND (deleted IS NULL OR deleted > NOW())
+                        AND published <= NOW()
+                ORDER BY published DESC
+                ;";
+
+            $res = $this->app->db->executeFetch($sql, [$id, "post"]);
+
+            $this->app->page->add("contentDB/secondaryHeader");
+
+            if (!$res) {
+                $this->app->page->add("contentDB/404");
+            } else {
+                $filters = explode(",", $res->filter);
+                $res->data = $this->textFilter->parse($res->data, $filters);
+                $this->app->page->add("contentDB/blogpost", [
+                    "resultset" => $res,
+                ]);
+            }
+        }
         return $this->app->page->render([
             "title" => $this->title,
         ]);
