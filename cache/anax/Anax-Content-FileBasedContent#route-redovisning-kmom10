@@ -1,0 +1,71 @@
+O:8:"stdClass":7:{s:4:"file";s:24:"redovisning/10_kmom10.md";s:7:"section";s:2:"10";s:5:"level";i:1;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"views";a:6:{s:5:"flash";a:3:{s:6:"region";s:5:"flash";s:8:"template";s:21:"anax/v2/image/default";s:4:"data";a:1:{s:3:"src";s:62:"image/logo.png?width=100%&height=250&crop-to-fit&area=0,0,20,0";}}s:10:"breadcrumb";a:3:{s:6:"region";s:10:"breadcrumb";s:8:"template";s:26:"anax/v2/breadcrumb/default";s:4:"data";a:2:{s:4:"meta";a:1:{s:4:"type";s:10:"breadcrumb";}s:10:"breadcrumb";a:2:{i:1;a:2:{s:3:"url";s:12:"redovisning/";s:4:"text";s:18:"Redovisningstexter";}i:0;a:2:{s:3:"url";s:18:"redovisning/kmom10";s:4:"text";s:18:"Redovisning kmom10";}}}}s:19:"next-previous-above";a:4:{s:6:"region";s:4:"main";s:8:"template";s:29:"anax/v2/next-previous/default";s:4:"sort";i:1;s:4:"data";a:4:{s:17:"nextPreviousTitle";b:0;s:4:"meta";a:1:{s:4:"type";s:13:"next-previous";}s:4:"next";N;s:8:"previous";a:10:{s:4:"file";s:24:"redovisning/06_kmom06.md";s:7:"section";s:2:"06";s:5:"level";i:2;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"title";s:18:"Redovisning kmom06";s:11:"publishTime";b:0;s:13:"sectionHeader";N;s:8:"linkable";N;s:5:"route";s:18:"redovisning/kmom06";}}}s:4:"main";a:3:{s:4:"sort";i:2;s:4:"data";a:4:{s:4:"meta";a:1:{s:4:"type";s:8:"toc-sort";}i:0;N;s:7:"content";s:2835:"<h1>Redovisning kmom10</h1>
+
+<h2>Implementationen</h2>
+
+<h4>Krav 1</h4>
+
+<p>Hemsidan är uppbyggd genom att index är skriven i markdown fil som ligger i ramverkets content katalog. Produkter och blogg är implementerade med hjälp av kontrollers. En för
+produkter, samt en för bloggen. Båda dessa två routes/sidor använder sig av vyer. För att visa sitt innehåll. Produkterna listas i divar med en liten bild, kort beskrivning,
+namn och pris. När man klickar på en produkt tas man till en detaljsida om denna produkt. Blogginläggen visas på liknande sätt. Fast dessa visas i ordning av nyast inlägg till
+äldsta inlägg.</p>
+
+<h4>Krav 2</h4>
+
+<p>Dokumentationen gjordes genom att phpdoc användes för att autogenerera dokumentationen av mina klasser. Dock så blev det en massa felmeddelanden vid generationen som också
+nämndes i doc sidan på webbplatsen. Enhets Testningen kunde endast göras på textfilter klassen, då jag inte vet hur man testar en kontroller klass. Kod Sträckningen som
+uppnåddes på textfilter klassen var 87.50%.  Er-diagrammet över databasen genererades med hjälp av mysql workbench.</p>
+
+<h4>Krav 3</h4>
+
+<p>Admin gränssnittet är uppbyggt med hjälp av en kontroller. Alla get routes i denna kontroller är skyddade med hjälp av en funktion som kollar om användaren i sessionen är
+inloggad. Om man inte är det så redirectas man till en login sida och ombeds att logga in. Efter man loggat in har man tillgång till en översikt av blogginlägg och produkter
+och med knappar för att redigera och radera dessa. Samt tillgång till att skapa nya produkter och blogginlägg. När en ny produkt eller blogginlägg ska skapas läggs den till i
+databasen med endast en temporär titel, som man sen får ändra i redigeringssidan.</p>
+
+<h2>Allmänt om projektet</h2>
+
+<p>Allmänt tycker jag att bara implementera grundkraven var rätt lagom att göra. Det mesta som implementeras i grundkraven. Får man genom att redan ha gjort kmom05 och 06. Detta
+projekt tycker jag är rätt så rimligt för kursen. Då man får implementera är saker man gjort tidigare i kursen såsom databas integration mot utvecklings och produktions
+databas. Samt hur man kan använda sig av kontrollers istället för att använda sig av route callbacks.</p>
+
+<h2>Allmänt om kursen</h2>
+
+<p>Allmänt tycker jag det har varit en bra kurs. Jag har lärt mig mycket om objektorienterad programmering i php. Samt hur man enhets testar i php. Det var lite ovant att bli
+inslängd i anax igen. Så det var lite jobbigt att komma in mapp och filstrukturen och lära sig vart allt ska placeras för att det ska fungera. Lärarna, videorna och
+kursmaterialet i allmänhet  har varit riktigt bra som underlag.  Allmänt så tycker jag att version av denna kurs har varit bra. Och kan då glatt ge kursen 7.5-8/10.</p>
+";s:7:"excerpt";s:2835:"<h1>Redovisning kmom10</h1>
+
+<h2>Implementationen</h2>
+
+<h4>Krav 1</h4>
+
+<p>Hemsidan är uppbyggd genom att index är skriven i markdown fil som ligger i ramverkets content katalog. Produkter och blogg är implementerade med hjälp av kontrollers. En för
+produkter, samt en för bloggen. Båda dessa två routes/sidor använder sig av vyer. För att visa sitt innehåll. Produkterna listas i divar med en liten bild, kort beskrivning,
+namn och pris. När man klickar på en produkt tas man till en detaljsida om denna produkt. Blogginläggen visas på liknande sätt. Fast dessa visas i ordning av nyast inlägg till
+äldsta inlägg.</p>
+
+<h4>Krav 2</h4>
+
+<p>Dokumentationen gjordes genom att phpdoc användes för att autogenerera dokumentationen av mina klasser. Dock så blev det en massa felmeddelanden vid generationen som också
+nämndes i doc sidan på webbplatsen. Enhets Testningen kunde endast göras på textfilter klassen, då jag inte vet hur man testar en kontroller klass. Kod Sträckningen som
+uppnåddes på textfilter klassen var 87.50%.  Er-diagrammet över databasen genererades med hjälp av mysql workbench.</p>
+
+<h4>Krav 3</h4>
+
+<p>Admin gränssnittet är uppbyggt med hjälp av en kontroller. Alla get routes i denna kontroller är skyddade med hjälp av en funktion som kollar om användaren i sessionen är
+inloggad. Om man inte är det så redirectas man till en login sida och ombeds att logga in. Efter man loggat in har man tillgång till en översikt av blogginlägg och produkter
+och med knappar för att redigera och radera dessa. Samt tillgång till att skapa nya produkter och blogginlägg. När en ny produkt eller blogginlägg ska skapas läggs den till i
+databasen med endast en temporär titel, som man sen får ändra i redigeringssidan.</p>
+
+<h2>Allmänt om projektet</h2>
+
+<p>Allmänt tycker jag att bara implementera grundkraven var rätt lagom att göra. Det mesta som implementeras i grundkraven. Får man genom att redan ha gjort kmom05 och 06. Detta
+projekt tycker jag är rätt så rimligt för kursen. Då man får implementera är saker man gjort tidigare i kursen såsom databas integration mot utvecklings och produktions
+databas. Samt hur man kan använda sig av kontrollers istället för att använda sig av route callbacks.</p>
+
+<h2>Allmänt om kursen</h2>
+
+<p>Allmänt tycker jag det har varit en bra kurs. Jag har lärt mig mycket om objektorienterad programmering i php. Samt hur man enhets testar i php. Det var lite ovant att bli
+inslängd i anax igen. Så det var lite jobbigt att komma in mapp och filstrukturen och lära sig vart allt ska placeras för att det ska fungera. Lärarna, videorna och
+kursmaterialet i allmänhet  har varit riktigt bra som underlag.  Allmänt så tycker jag att version av denna kurs har varit bra. Och kan då glatt ge kursen 7.5-8/10.</p>
+";}s:8:"template";s:23:"anax/v2/article/default";}s:19:"next-previous-below";a:4:{s:6:"region";s:4:"main";s:8:"template";s:29:"anax/v2/next-previous/default";s:4:"sort";i:3;s:4:"data";a:4:{s:17:"nextPreviousTitle";b:1;s:4:"meta";a:2:{s:4:"type";s:4:"copy";s:4:"view";s:19:"next-previous-above";}s:4:"next";N;s:8:"previous";a:10:{s:4:"file";s:24:"redovisning/06_kmom06.md";s:7:"section";s:2:"06";s:5:"level";i:2;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"title";s:18:"Redovisning kmom06";s:11:"publishTime";b:0;s:13:"sectionHeader";N;s:8:"linkable";N;s:5:"route";s:18:"redovisning/kmom06";}}}s:3:"toc";a:3:{s:6:"region";s:12:"sidebar-left";s:8:"template";s:19:"anax/v2/toc/default";s:4:"data";a:3:{s:5:"title";s:9:"Innehåll";s:4:"meta";a:1:{s:4:"type";s:8:"book-toc";}s:3:"toc";a:8:{s:17:"redovisning/index";a:9:{s:4:"file";s:23:"redovisning/00_index.md";s:7:"section";s:2:"00";s:5:"level";i:0;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"title";s:18:"Redovisningstexter";s:11:"publishTime";b:0;s:13:"sectionHeader";N;s:8:"linkable";N;}s:18:"redovisning/kmom01";a:9:{s:4:"file";s:24:"redovisning/01_kmom01.md";s:7:"section";s:2:"01";s:5:"level";i:2;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"title";s:18:"Redovisning kmom01";s:11:"publishTime";b:0;s:13:"sectionHeader";N;s:8:"linkable";N;}s:18:"redovisning/kmom02";a:9:{s:4:"file";s:24:"redovisning/02_kmom02.md";s:7:"section";s:2:"02";s:5:"level";i:2;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"title";s:18:"Redovisning kmom02";s:11:"publishTime";b:0;s:13:"sectionHeader";N;s:8:"linkable";N;}s:18:"redovisning/kmom03";a:9:{s:4:"file";s:24:"redovisning/03_kmom03.md";s:7:"section";s:2:"03";s:5:"level";i:2;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"title";s:18:"Redovisning kmom03";s:11:"publishTime";b:0;s:13:"sectionHeader";N;s:8:"linkable";N;}s:18:"redovisning/kmom04";a:9:{s:4:"file";s:24:"redovisning/04_kmom04.md";s:7:"section";s:2:"04";s:5:"level";i:2;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"title";s:18:"Redovisning kmom04";s:11:"publishTime";b:0;s:13:"sectionHeader";N;s:8:"linkable";N;}s:18:"redovisning/kmom05";a:9:{s:4:"file";s:24:"redovisning/05_kmom05.md";s:7:"section";s:2:"05";s:5:"level";i:2;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"title";s:18:"Redovisning kmom05";s:11:"publishTime";b:0;s:13:"sectionHeader";N;s:8:"linkable";N;}s:18:"redovisning/kmom06";a:9:{s:4:"file";s:24:"redovisning/06_kmom06.md";s:7:"section";s:2:"06";s:5:"level";i:2;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"title";s:18:"Redovisning kmom06";s:11:"publishTime";b:0;s:13:"sectionHeader";N;s:8:"linkable";N;}s:18:"redovisning/kmom10";a:9:{s:4:"file";s:24:"redovisning/10_kmom10.md";s:7:"section";s:2:"10";s:5:"level";i:1;s:8:"internal";b:0;s:7:"tocable";b:1;s:5:"title";s:18:"Redovisning kmom10";s:11:"publishTime";b:0;s:13:"sectionHeader";N;s:8:"linkable";N;}}}}}s:11:"frontmatter";a:2:{i:0;N;s:5:"title";s:18:"Redovisning kmom10";}}
